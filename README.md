@@ -1,0 +1,19 @@
+# URL Shortener
+
+Простой сервис для сокращения длинных URL-адресов с возможностью перенаправления на исходный адрес.  
+
+## Возможности
+- Сокращение длинных ссылок до короткого идентификатора  
+- Перенаправление по короткому URL на оригинальный адрес  
+- Хранение и управление ссылками в базе данных sqlite
+- Лёгкий запуск и настройка  
+
+## Установка и запуск
+```bash
+git clone https://github.com/FrishStrike/url-shortener.git
+cd url-shortener
+go run cmd\url-shortener\main.go
+```
+
+## О приложении
+Сервер использует СУБД sqlite. Конфигурация находится в файле locale.yaml, для инициализации использует библиотеки cleanenv (github.com/ilyakaznacheev/cleanenv) и godotenv (github.com/joho/godotenv). Так же настроен логгер slog. Роутеры и мидлвееры взяты из библиотекм chi (github.com/go-chi/chi). В проекте есть несколько хендлеров: delete, redirect, retrieve, save. К двум из них написаны юнит тесты. Для юнит тестов используются библиотека testify (github.com/stretchr/testify) и mocks (start1/internal/http-server/mocks). В проекте используется кодогенерация, с помощью mocks, для имитации поведения методов storage.
